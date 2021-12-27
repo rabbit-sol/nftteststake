@@ -1,0 +1,77 @@
+#hot-heading {
+  font-size: 4.5rem;
+  line-height: 1;
+  font-weight: 800;
+  box-sizing: border-box;
+  border: 0 solid;
+}
+.connectButton {
+  border: 2px solid #2d2d2d;
+  border-radius: 30px;
+  margin: 4rem 0 0 0;
+  padding: 0.5rem 2rem;
+  color: #2d2d2d;
+  transition: all 200ms ease-in-out;
+}
+.connectButton:hover {
+  background: #ffe9fb !important;
+}
+
+#home {
+  background-image: url(../assets/background2.svg) !important;
+  border: 0 !important;
+}
+#roadmap {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 233, 251, var(--tw-bg-opacity));
+}
+#team {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 233, 251, var(--tw-bg-opacity));
+}
+.cuuEfd {
+  font-weight: 540 !important;
+  padding-top: 0.5 rem;
+  padding-bottom: 0.5 rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-top: 0.5 rem;
+  margin-bottom: 0.5 rem;
+}
+.huyYPG {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 900 !important;
+  margin-top: 1 rem;
+}
+.gkbltu {
+  font-weight: 540 !important;
+  padding-top: 0.5 rem;
+  padding-bottom: 0.5 rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.jVprLe {
+  /* background: #ff4bdc; */
+  background: -webkit-linear-gradient(to bottom,#ff4bdc 39%,#0057ff 100%) !important;
+  background: -moz-linear-gradient(to bottom,#ff4bdc 39%,#0057ff 100%) !important;
+  background: linear-gradient(to bottom,#ff4bdc 39%,#0057ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800 !important;
+}
+.iWzkZh {
+  position: relative;
+  font-size: 3.125rem !important;
+  line-height: 2.75rem !important;
+  font-weight: 700 !important;
+  width: 10rem !important;
+}
+@media (max-width:1500){
+  img{
+    max-width: 60%;
+  }
+  .min-h-screen{
+    min-height: 80vh;
+  }
+}

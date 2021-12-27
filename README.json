@@ -1,0 +1,44 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git config --global user.email "shubhamkunwar10feb@gmail.com"
+git config --global user.name "My Name"
+git remote add whiterabbit-hub https://github.com/whiterabbit-hub/solslut-main.git
+git remote add repo_nickname https://github.com/whiterabbit-hub/solslut-main.git
+git remote -v
+git add .
+git commit -m "msm"
+git push
+clear
