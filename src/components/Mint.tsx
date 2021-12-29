@@ -375,10 +375,11 @@ const Home = (props: HomeProps) => {
         {!wallet ? (
           <div className="flex flex-wrap flex-col lg:flex-row items-center justify-center min-h-screen">
           <MintCard data-aos="flip-left">
+            <h1 className="font-semibold text-2xl mt-5 mb-6">Early bird: SOLD OUT</h1>
               <h1 className="mt-5 text-center text-wrap lg:text-left font-bold text-3xl md:text-4xl">
                   Mint Your Dream Girl
               </h1>
-              <h1 className="font-semibold text-2xl mt-8 mb-4">
+              <h1 className="font-semibold text-2xl mt-6 mb-4">
                   Mint Quantity
               </h1>
               <CounterInput
@@ -417,7 +418,7 @@ const Home = (props: HomeProps) => {
                   ~ {(quantity * basePrice).toFixed(1)} SOL
               </h2>
               
-              <ConnectButton style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "4rem 0 0 0",padding: "0.5rem 2rem"}}>Mint</ConnectButton>
+              <ConnectButton style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "4rem 0 0 0",padding: "0.5rem 2rem"}}>Mint Paused</ConnectButton>
             
           </MintCard>
           <div className="flex relative lg:p-24 p-12 pt-4 justify-center items-center overflow-hidden">
@@ -485,8 +486,8 @@ const Home = (props: HomeProps) => {
                     margin: "4rem 0 0 0",
                     padding: "0.5rem 2rem",
                   }}
-                  disabled={isSoldOut || isMinting || !isActive}
-                  onClick={() => startMintMultiple(quantity)}
+                  disabled={true}
+                  // onClick={() => startMintMultiple(quantity)}
                   variant="contained"
                 >
             {isSoldOut ? (
@@ -495,7 +496,7 @@ const Home = (props: HomeProps) => {
               isMinting ? (
                 <CircularProgress />
                 ) : (
-                  "MINT"
+                  "MINT PAUSED"
                   )
                   ) : (
               <Countdown

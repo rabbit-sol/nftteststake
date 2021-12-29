@@ -1,12 +1,52 @@
-import React, { useState } from "react";
+import React, {FC, useState } from "react";
 import { Link } from "react-scroll";
-
+import Countdown from "react-countdown";
 import { RiMenu3Fill } from "react-icons/ri";
 import { FaTimes } from "react-icons/fa";
 import { BsDiscord, BsTwitter } from "react-icons/bs";
 
 import { MintButton } from "../components/Buttons/Buttons";
 
+interface Props {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    completed: boolean;
+}
+const Completionist = () => (
+    <span style={{ color: "#2D2D2D", fontWeight: 700, fontSize: "1.5rem" }}>
+        Mint now LIVE
+    </span>
+);
+const renderer: FC<Props> = ({
+    days,
+    hours,
+    minutes,
+    seconds,
+    completed,
+}) => {
+    if (completed) {
+        // Render a completed state
+        return <Completionist />;
+    } else {
+        // Render a countdown
+        return (
+            <span
+                style={{
+                    color: "#2D2D2D",
+                    fontWeight: 600,
+                    fontSize: "1.1rem",
+                    margin: "1.5rem",
+                }}
+            >
+                {days} Days | {hours} Hours | {minutes} Minutes | {seconds}
+            </span>
+        );
+    }
+};
+const currentDate = new Date(new Date().toUTCString()).getTime();
+   const launchDate = new Date(Date.UTC(2022, 0, 3,14, 0, 0, 0)).getTime();
 const Navbar = () => {
     const [isClicked, setIsClicked] = useState(false);
 
@@ -58,6 +98,8 @@ const Navbar = () => {
                         >
                             Team
                         </Link>
+                      
+                        
 
                         <MintButton
                             to="/mint"
@@ -66,6 +108,12 @@ const Navbar = () => {
                             Mint Now
                         </MintButton>
                     </div>
+                    <div className="flex  justify-center items-center ">
+                <Countdown
+                    date={currentDate + (launchDate - currentDate)}
+                    renderer={renderer}
+                />
+            </div>
 
                     {/* secondary nav */}
                     <div className="lg:flex hidden items-center font-bold space-x-1">

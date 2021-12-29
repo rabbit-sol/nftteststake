@@ -106,11 +106,11 @@ const App = () => {
   
 
   const currentDate = new Date(new Date().toUTCString()).getTime();
-   const launchDate = new Date(Date.UTC(2021, 11, 27,14, 0, 0, 0)).getTime();
+  const launchDate = new Date(Date.UTC(2022, 0, 3,14, 0, 0, 0)).getTime();
 
   const Completionist = () => (
       <span style={{ color: "#2D2D2D", fontWeight: 700, fontSize: "1.5rem" }}>
-          Mint now LIVE
+         Mint now LIVE
       </span>
   );
 
@@ -169,6 +169,7 @@ const App = () => {
                     renderer={renderer}
                 />
             </div>
+            
               <Mint
                 candyMachineId={candyMachineId}
                 config={config}
