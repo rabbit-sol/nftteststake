@@ -418,7 +418,7 @@ const Home = (props: HomeProps) => {
                   ~ {(quantity * basePrice).toFixed(1)} SOL
               </h2>
               
-              <ConnectButton style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "4rem 0 0 0",padding: "0.5rem 2rem"}}>Mint Paused</ConnectButton>
+              <ConnectButton style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "4rem 0 0 0",padding: "0.5rem 2rem"}}>Mint</ConnectButton>
             
           </MintCard>
           <div className="flex relative lg:p-24 p-12 pt-4 justify-center items-center overflow-hidden">
@@ -486,8 +486,8 @@ const Home = (props: HomeProps) => {
                     margin: "4rem 0 0 0",
                     padding: "0.5rem 2rem",
                   }}
-                  disabled={true}
-                  // onClick={() => startMintMultiple(quantity)}
+                  disabled={!isWhitelisted || isSoldOut || isMinting || !isActive}
+                  onClick={() => startMintMultiple(quantity)}
                   variant="contained"
                 >
             {isSoldOut ? (
@@ -496,7 +496,7 @@ const Home = (props: HomeProps) => {
               isMinting ? (
                 <CircularProgress />
                 ) : (
-                  "MINT PAUSED"
+                  "MINT"
                   )
                   ) : (
               <Countdown
