@@ -365,17 +365,18 @@ const Home = (props: HomeProps) => {
 
       {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
 
-      {wallet && <p>Total Available: {itemsAvailable}</p>}
-
+      {wallet && <p>Total Available: {itemsAvailable}</p>}*/}
+{/* 
       {wallet && <p>Redeemed: {itemsRedeemed}</p>}
 
-      {wallet && <p>Remaining: {itemsRemaining}</p>} */}
+      {wallet && <p>Remaining: {itemsRemaining}</p>}  */}
 
       <MintContainer>
         {!wallet ? (
           <div className="flex flex-wrap flex-col lg:flex-row items-center justify-center min-h-screen">
           <MintCard data-aos="flip-left">
-            <h1 className="font-semibold text-2xl mt-5 mb-6">Early bird: SOLD OUT</h1>
+            <h1 className="font-semibold text-2xl mt-5 mb-2">EARLY BIRD: SOLD OUT</h1>
+            <h1 className="font-semibold text-2xl mt-2 mb-6">PRE-SALE: SOLD OUT</h1>
               <h1 className="mt-5 text-center text-wrap lg:text-left font-bold text-3xl md:text-4xl">
                   Mint Your Dream Girl
               </h1>
@@ -418,7 +419,7 @@ const Home = (props: HomeProps) => {
                   ~ {(quantity * basePrice).toFixed(1)} SOL
               </h2>
               
-              <ConnectButton style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "4rem 0 0 0",padding: "0.5rem 2rem"}}>Mint</ConnectButton>
+              <ConnectButton disabled={true} style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "2rem 0 0 0",padding: "0.5rem 2rem"}}>Mint Paused</ConnectButton>
             
           </MintCard>
           <div className="flex relative lg:p-24 p-12 pt-4 justify-center items-center overflow-hidden">
@@ -435,6 +436,8 @@ const Home = (props: HomeProps) => {
           <div>
              <div className="flex flex-wrap flex-col lg:flex-row items-center justify-center min-h-screen">
           <MintCard data-aos="flip-left">
+          <h1 className="font-semibold text-2xl mt-5 mb-2">EARLY BIRD: SOLD OUT</h1>
+            <h1 className="font-semibold text-2xl mt-2 mb-6">PRE-SALE: SOLD OUT</h1>
               <h1 className="mt-5 text-center text-wrap lg:text-left font-bold text-3xl md:text-4xl">
                   Mint Your Dream Girl
               </h1>
@@ -483,11 +486,12 @@ const Home = (props: HomeProps) => {
                     border: "2px solid #2d2d2d",
                     transition: "all 200ms ease-in-out",
                     borderRadius: "30px",
-                    margin: "4rem 0 0 0",
+                    margin: "2rem 0 0 0",
                     padding: "0.5rem 2rem",
                   }}
-                  disabled={!isWhitelisted || isSoldOut || isMinting || !isActive}
-                  onClick={() => startMintMultiple(quantity)}
+                  disabled={true}
+                  // disabled={!isWhitelisted || isSoldOut || isMinting || !isActive}
+                  // onClick={() => startMintMultiple(quantity)}
                   variant="contained"
                 >
             {isSoldOut ? (
@@ -496,7 +500,7 @@ const Home = (props: HomeProps) => {
               isMinting ? (
                 <CircularProgress />
                 ) : (
-                  "MINT"
+                  "MINT PAUSED"
                   )
                   ) : (
               <Countdown
@@ -507,10 +511,8 @@ const Home = (props: HomeProps) => {
               />
             )}
           </MintButton>
-              <h2 className="font-semibold text-md my-6">
-
-              </h2>
-              <h2 className="font-semibold text-md ">
+        
+              <h2 className="font-semibold text-md mt-4 ">
               {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
               </h2>
           </MintCard>

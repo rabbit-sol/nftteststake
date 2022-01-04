@@ -46,7 +46,7 @@ const renderer: FC<Props> = ({
     }
 };
 const currentDate = new Date(new Date().toUTCString()).getTime();
-   const launchDate = new Date(Date.UTC(2022, 0, 3,14, 0, 0, 0)).getTime();
+   const launchDate = new Date(Date.UTC(2022, 0, 15,14, 0, 0, 0)).getTime();
 const Navbar = () => {
     const [isClicked, setIsClicked] = useState(false);
 
@@ -113,6 +113,9 @@ const Navbar = () => {
                     date={currentDate + (launchDate - currentDate)}
                     renderer={renderer}
                 />
+            </div>
+                    <div className="flex  justify-center items-center ">
+                    <h1 className="font-semibold text-2xl ">PRE-SALE: SOLD OUT</h1>
             </div>
 
                     {/* secondary nav */}
