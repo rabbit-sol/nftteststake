@@ -351,7 +351,7 @@ const Home = (props: HomeProps) => {
 
   
   const [quantity, setQuantity] = useState(0);
-  const basePrice = 0.5;
+  const basePrice = 0.69;
   const handleQuantityChange = (count: number) => {
     setQuantity(count);
     console.log(quantity)
