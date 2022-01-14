@@ -416,7 +416,7 @@ const Home = (props: HomeProps) => {
                   10 max per transaction
               </h1>
               <h2 className="font-bold text-2xl mt-6">
-                  ~ {(quantity * basePrice).toFixed(1)} SOL
+                  ~ {(quantity * basePrice)} SOL
               </h2>
               
               <ConnectButton disabled={true} style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "2rem 0 0 0",padding: "0.5rem 2rem"}}>Mint Paused</ConnectButton>
@@ -477,7 +477,7 @@ const Home = (props: HomeProps) => {
                   10 max per transaction
               </h1>
               <h2 className="font-bold text-2xl mt-6">
-                  ~ {(quantity * basePrice).toFixed(1)} SOL
+                  ~ {(quantity * basePrice)} SOL
               </h2>
               <MintButton
                   style={{
