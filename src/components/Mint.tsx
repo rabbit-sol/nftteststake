@@ -111,95 +111,7 @@ const Home = (props: HomeProps) => {
     })();
   };
 
-  const onMint = async () => {
-    try {
-      let res = await fetch(`${api_url}/whitelisted/member/${(wallet as anchor.Wallet).publicKey.toString()}`, {method: "GET"})
-      const res_json = await res.json()
-      const res_num = await JSON.parse(JSON.stringify(res_json)).reserve //The number  of reserves the user has left
-      if(!isWhitelisted){
-        throw new Error("You are not whitelisted");
-      }
-      if(res_num - 1 < 0){
-        console.log("confirmed")
-        throw new Error("Not enough reserves");
-      }
-      setIsMinting(true);
-      if (wallet && candyMachine?.program) {
-        const mintTxId = await mintOneToken(
-          candyMachine,
-          props.config,
-          wallet.publicKey,
-          props.treasury
-        );
-
-        const status = await awaitTransactionSignatureConfirmation(
-          mintTxId,
-          props.txTimeout,
-          props.connection,
-          "singleGossip",
-          false
-        );
-
-        if (!status?.err) {
-          setAlertState({
-            open: true,
-            message: "Congratulations! Mint succeeded!",
-            severity: "success",
-          });
-          const to_send = await JSON.stringify({"reserve": res_num-1})
-          await fetch(`${api_url}/whitelisted/update/${(wallet as anchor.Wallet).publicKey.toString()}/${process.env.REACT_APP_SECRET_KEY}`, {
-            method: "PUT",
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: to_send})
-          console.log("Updated Reserves for user")
-
-        } else {
-          setAlertState({
-            open: true,
-            message: "Mint failed! Please try again!",
-            severity: "error",
-          });
-        }
-      }
-    } catch (error: any) {
-      // TODO: blech:
-      let message = error.message || "Minting failed! Please try again!";
-      if (!error.message) {
-        if (error.message.indexOf("0x138")) {
-        } else if (error.message.indexOf("0x137")) {
-          message = `SOLD OUT!`;
-        } else if (error.message.indexOf("0x135")) {
-          message = `Insufficient funds to mint. Please fund your wallet.`;
-        }
-      } else {
-        if (error.code === 311) {
-          message = `SOLD OUT!`;
-          setIsSoldOut(true);
-        } else if (error.code === 312) {
-          message = `Minting period hasn't started yet.`;
-        } else if (error.message === "You are not whitelisted"){
-          message = error.message;
-        } else if (error.message === "Not enough reserves"){
-          message = error.message
-        }
-      }
-
-      setAlertState({
-        open: true,
-        message,
-        severity: "error",
-      });
-    } finally {
-      if (wallet) {
-        const balance = await props.connection.getBalance(wallet.publicKey);
-        setBalance(balance / LAMPORTS_PER_SOL);
-      }
-      setIsMinting(false);
-      refreshCandyMachineState();
-    }
-  };
+  
 
 
   useEffect(() => {
@@ -225,22 +137,7 @@ const Home = (props: HomeProps) => {
   ]);
 
   const startMintMultiple = async (quantity: number) => {
-    console.log(quantity);
-    try {
-      let res = await fetch(
-        `${api_url}/whitelisted/member/${(
-          wallet as anchor.Wallet
-        ).publicKey.toString()}`,
-        { method: "GET" }
-      );
-      const res_json = await res.json();
-      const res_num = await JSON.parse(JSON.stringify(res_json)).reserve; //The number  of reserves the user has left
-      if (!isWhitelisted) {
-        throw new Error("You are not whitelisted");
-      }
-      if (res_num - 1 < 0) {
-        throw new Error("Not enough reserves");
-      }
+    try {    
       setIsMinting(true);
       if (wallet && candyMachine?.program ) {
         const signedTransactions: any = await mintMultipleToken(
@@ -250,7 +147,6 @@ const Home = (props: HomeProps) => {
           props.treasury,
           quantity
         );
-          console.log(quantity)
         const promiseArray = [];
         console.log("check quantity", signedTransactions);
 
@@ -287,19 +183,7 @@ const Home = (props: HomeProps) => {
             message: "Congratulations! Mint succeeded!",
             severity: "success",
           });
-          const to_send = await JSON.stringify({ reserve: res_num - quantity });
-          await fetch(
-            `${api_url}/whitelisted/update/${(
-              wallet as anchor.Wallet
-            ).publicKey.toString()}/${process.env.REACT_APP_SECRET_KEY}`,
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: to_send,
-            }
-          );
+        
           console.log("Updated Reserves for user");
         }
 
@@ -419,7 +303,7 @@ const Home = (props: HomeProps) => {
                   ~ {(quantity * basePrice)} SOL
               </h2>
               
-              <ConnectButton disabled={true} style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "2rem 0 0 0",padding: "0.5rem 2rem"}}>Mint Paused</ConnectButton>
+              <ConnectButton style={{color: "#2d2d2d", backgroundColor:"white",border: "2px solid #2d2d2d", transition: "all 200ms ease-in-out",borderRadius : "30px", margin: "2rem 0 0 0",padding: "0.5rem 2rem"}}>Mint</ConnectButton>
             
           </MintCard>
           <div className="flex relative lg:p-24 p-12 pt-4 justify-center items-center overflow-hidden">
@@ -489,9 +373,8 @@ const Home = (props: HomeProps) => {
                     margin: "2rem 0 0 0",
                     padding: "0.5rem 2rem",
                   }}
-                  disabled={true}
-                  // disabled={!isWhitelisted || isSoldOut || isMinting || !isActive}
-                  // onClick={() => startMintMultiple(quantity)}
+                  disabled={ isSoldOut || isMinting || !isActive}
+                  onClick={() => startMintMultiple(quantity)}
                   variant="contained"
                 >
             {isSoldOut ? (
@@ -500,7 +383,7 @@ const Home = (props: HomeProps) => {
               isMinting ? (
                 <CircularProgress />
                 ) : (
-                  "MINT PAUSED"
+                  "MINT"
                   )
                   ) : (
               <Countdown
