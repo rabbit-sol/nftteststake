@@ -170,14 +170,14 @@ const App = () => {
                 />
             </div>
             
-              <Mint
+              {/* <Mint
                 candyMachineId={candyMachineId}
                 config={config}
                 connection={connection}
                 startDate={startDateSeed}
                 treasury={treasury}
                 txTimeout={txTimeout}
-              />
+              /> */}
             </WalletDialogProvider>
           </WalletProvider>
         </ConnectionProvider>
