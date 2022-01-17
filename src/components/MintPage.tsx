@@ -106,11 +106,11 @@ const App = () => {
   
 
   const currentDate = new Date(new Date().toUTCString()).getTime();
-  const launchDate = new Date(Date.UTC(2022, 0, 15,14, 0, 0, 0)).getTime();
+  const launchDate = new Date(Date.UTC(2022, 0, 23,10, 0, 0, 0)).getTime();
 
   const Completionist = () => (
       <span style={{ color: "#2D2D2D", fontWeight: 700, fontSize: "1.5rem" }}>
-         Mint now PAUSED
+         Mint now LIVE
       </span>
   );
 
@@ -136,7 +136,7 @@ const App = () => {
                       margin: "1.5rem",
                   }}
               >
-                  {days} Days | {hours} Hours | {minutes} Minutes | {seconds}
+                  {days} Days | {hours} Hours | {minutes} Minutes | {seconds} Seconds
               </span>
           );
       }
@@ -170,14 +170,14 @@ const App = () => {
                 />
             </div>
             
-              {/* <Mint
+              <Mint
                 candyMachineId={candyMachineId}
                 config={config}
                 connection={connection}
                 startDate={startDateSeed}
                 treasury={treasury}
                 txTimeout={txTimeout}
-              /> */}
+              />
             </WalletDialogProvider>
           </WalletProvider>
         </ConnectionProvider>

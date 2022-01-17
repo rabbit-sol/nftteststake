@@ -46,7 +46,7 @@ const renderer: FC<Props> = ({
     }
 };
 const currentDate = new Date(new Date().toUTCString()).getTime();
-   const launchDate = new Date(Date.UTC(2022, 0, 15,14, 0, 0, 0)).getTime();
+   const launchDate = new Date(Date.UTC(2022, 0, 23,10, 0, 0, 0)).getTime();
 const Navbar = () => {
     const [isClicked, setIsClicked] = useState(false);
 
