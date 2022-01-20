@@ -17,7 +17,7 @@ const data = {
         },
         {
             title: "What is the hourly rate (mint price) for the sluts?",
-            content: "The hourly rate (and mint price) will be 0.5 SOL for pre-sale and 0.69 for public sale",
+            content: "The hourly rate (and mint price) will be 0.50 SOL for pre-sale and 0.69 for public sale",
         },
         {
             title: "How to get access to the pre-sale?",
